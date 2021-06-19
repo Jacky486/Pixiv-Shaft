@@ -18,6 +18,9 @@ jobs:
       run: |
         sed -i -e '/google-services/d; /firebase/d' build.gradle
         sed -i -e '/google-services/d; /firebase/d' app/build.gradle
+        sed -i -e '116,118d' app/src/main/java/ceui/lisa/activities/Shaft.java
+        sed -i -e '773,782d' app/src/main/java/ceui/lisa/fragments/FragmentSettings.java
+        sed -i -e '/firebase/d' app/src/main/java/ceui/lisa/activities/Shaft.java app/src/main/java/ceui/lisa/fragments/FragmentSettings.java 
     - name: Build with Gradle
       run: |
          chmod +x gradlew
