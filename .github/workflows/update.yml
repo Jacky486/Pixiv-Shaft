@@ -11,19 +11,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Install git
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install git
-    - name: Set env
-      run: |
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
-    - name: Update fork
-      run: |
-        git remote add upstream https://github.com/CeuiLiSA/Pixiv-Shaft.git
-        git remote -v
-        git fetch upstream
-        git checkout master
-        git merge upstream/master
-        git push origin master
+      with:
+        ref: master
+    - name: Pull (Fast-Forward) upstream changes
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
+      with:
+        upstream_repository: CeuiLiSA/Pixiv-Shaft
+        upstream_branch: master
+        target_branch: master
